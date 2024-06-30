@@ -419,11 +419,11 @@ const Wallet = ({ walletAddress }) => {
                 <Typography variant="subtitle1">Адрес кошелька: {walletAddress}</Typography>
               </Grid>
             )}
-            {privateKey && (
+            {/* {privateKey && (
               <Grid item xs={12}>
                 <Typography variant="subtitle1">Приватный ключ: {privateKey}</Typography>
               </Grid>
-            )}
+            )} */}
             <Grid item xs={12}>
               <TextField
                 label="Сумма в ETH"
@@ -460,11 +460,11 @@ const Wallet = ({ walletAddress }) => {
             <Grid item xs={12}>
               <Button variant="contained" color="primary" onClick={fetchCbrData}>Получить данные с Центробанка</Button>
             </Grid>
-            {cbrData && (
+            {/* {cbrData && (
               <Grid item xs={12}>
                 <pre>{JSON.stringify(cbrData, null, 2)}</pre>
               </Grid>
-            )}
+            )} */}
             {prices && (
               <Grid item xs={12}>
                 <Typography variant="h6">Актуальные цены</Typography>

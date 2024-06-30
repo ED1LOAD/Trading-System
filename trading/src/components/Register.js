@@ -1,9 +1,8 @@
-// src/components/Register.js
 import React, { useState } from 'react';
 import Web3 from 'web3';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { useNavigate } from 'react-router-dom';
-import { Container, Box, Typography, Button, Paper, Grid } from '@mui/material';
+import { Container, Box, Typography, Button, Paper } from '@mui/material';
 
 const Register = () => {
   const [account, setAccount] = useState('');
@@ -40,8 +39,8 @@ const Register = () => {
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ]; // ABI фабричного контракта
-  const factoryAddress = '0x1968fa548e29c01ef2973d35156f9c41d039b550'; // Адрес задеплоенного фабричного контракта
+  ];
+  const factoryAddress = '0x1968fa548e29c01ef2973d35156f9c41d039b550';
 
   const createWallet = async () => {
     const provider = await detectEthereumProvider();
@@ -54,14 +53,15 @@ const Register = () => {
       const factoryContract = new web3.eth.Contract(factoryABI, factoryAddress);
 
       try {
+        const newAccount = web3.eth.accounts.create();
+        setNewPrivateKey(newAccount.privateKey);
+        
         const receipt = await factoryContract.methods.createWallet().send({ from: accounts[0] });
-
+        
         const event = receipt.events.WalletCreated;
         const newWalletAddress = event.returnValues.walletAddress;
-        const newAccount = web3.eth.accounts.create();
 
         setWalletAddress(newWalletAddress);
-        setNewPrivateKey(newAccount.privateKey);
 
         localStorage.setItem('walletData', JSON.stringify({
           address: newWalletAddress,

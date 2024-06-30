@@ -13,7 +13,7 @@ function App() {
       <Container maxWidth="md">
         <header className="App-header">
           <Typography variant="h3" component="h1" gutterBottom>
-            Trading System
+            Торговая система
           </Typography>
           <Routes>
             <Route path="/wallet/:address" element={<WalletPage />} />
